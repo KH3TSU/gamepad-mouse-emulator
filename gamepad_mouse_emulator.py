@@ -1,9 +1,7 @@
 import subprocess
 import evdev
 from evdev import UInput, ecodes as e
-import os
 
-# Define constants
 GAMEPAD_NAME = "USB Gamepad"
 BTN_TRIGGER = 288
 BTN_THUMB = 289
@@ -65,34 +63,22 @@ class GamepadMouseEmulator:
                 self.ui.syn()
             elif event.code == BTN_TRIGGER:
                 print("YouTube!")
-                # Open YouTube in Google Chrome
-                if event.value == 1:  # Button press event
-                    subprocess.Popen(["google-chrome", "https://www.youtube.com"])
+                subprocess.Popen(["google-chrome", "https://www.youtube.com"])
             elif event.code == BTN_THUMB:
                 print("Volume Up!")
-                # Increase system volume using ALSA
-                if event.value == 1:  # Button press event
-                    subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "10%+"])
+                subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "10%+"])
             elif event.code == BTN_THUMB2:
                 print("Mute!")
-                # Mute system volume using ALSA
-                if event.value == 1:  # Button press event
-                    subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "toggle"])
+                subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "toggle"])
             elif event.code == BTN_TOP:
                 print("Volume Down!")
-                # Decrease system volume using ALSA
-                if event.value == 1:  # Button press event
-                    subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "10%-"])
+                subprocess.call(["amixer", "-D", "pulse", "sset", "Master", "10%-"])
             elif event.code == BTN_BASE3:
                 print("Extra Button 4!")
-                # Open Sublime Text
-                if event.value == 1:  # Button press event
-                    subprocess.Popen(["subl"])
+                subprocess.Popen(["subl"])
             elif event.code == BTN_BASE4:
                 print("Extra Button 5!")
-                # Open another Konsole
-                if event.value == 1:  # Button press event
-                    subprocess.Popen(["konsole"])
+                subprocess.Popen(["konsole"])
 
 if __name__ == "__main__":
     try:
